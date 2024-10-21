@@ -4,6 +4,8 @@ import requests
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from db import initialize_counter, insert_url_document
+
 
 app = FastAPI()
 app.add_middleware(
@@ -32,7 +34,9 @@ async def upload_image(image_data: ImageData):
 
         # Check if the response was successful
         if response.status_code == 200:
-            return response.json()['image']['url']
+            initialize_counter()
+            id=insert_url_document(response.json()['image']['url'])
+            return id
         else:
             raise HTTPException(status_code=response.status_code, detail=response.text)
     
