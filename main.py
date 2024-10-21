@@ -19,7 +19,7 @@ app.add_middleware(
 class ImageData(BaseModel):
     base64_image: str
 
-@app.post("/upload-image")
+@app.post("/upload")
 async def upload_image(image_data: ImageData):
     try:
         # Prepare the request to Freeimage.host
@@ -44,3 +44,7 @@ async def upload_image(image_data: ImageData):
         raise HTTPException(status_code=500, detail=str(e))
 
 # To run the FastAPI app, use the command: uvicorn filename:app --reload
+
+@app.get("/")
+async def root():
+      return {"message": "Deployed Succesfully!"}
