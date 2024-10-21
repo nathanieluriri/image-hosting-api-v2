@@ -41,5 +41,3 @@ def insert_url_document(url):
     print(f"Inserted document: {doc}")
     return doc['_id']
 
-# Initialize counter if not already present
-initialize_counter()
