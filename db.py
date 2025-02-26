@@ -5,13 +5,13 @@ from dotenv import load_dotenv
 load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 
+
 # Connect to MongoDB
 client = MongoClient(MONGO_URI)
 
-# Select the database and collection
-db = client['Deliveries']  # Replace 'mydatabase' with your database name
-url_collection = db['ImageLinks']  # Replace 'urlCollection' with your collection name
-counters_collection = db['counters']  # Collection to store the counter
+db = client['Deliveries']  
+url_collection = db['ImageLinks']  
+counters_collection = db['counters']  
 
 # Step 1: Initialize the counter (Run this once)
 def initialize_counter():
