@@ -24,7 +24,6 @@ class ImageData(BaseModel):
 @app.post("/upload")
 async def upload_image(image_data: ImageData):
     try:
-        from db import initialize_counter, insert_url_document
         # Prepare the request using httpx for async operations
         async with httpx.AsyncClient() as client:
             response = await client.post(
@@ -38,8 +37,6 @@ async def upload_image(image_data: ImageData):
 
         # Check if the response was successful
         if response.status_code == 200:
-            initialize_counter()
-            id = insert_url_document(response.json()['image']['url'])
             return {"url":response.json()['image']['url']}
         else:
             raise HTTPException(status_code=response.status_code, detail=response.text)
